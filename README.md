@@ -12,3 +12,11 @@ There is a provision where user can tune the result of the model by changing som
 Here I have given provision to the user to change the value of n_estimator in Random Forest Algorithm. This value plays an importatnt role to change the performance of the model.
 
 Let's see how the model works.
+
+VVIMP:
+1. Create a main folder e.g. Webapp
+2. Create a folder inside Webapp/model and move all .pkl files in this folder
+3. Create a folder inside Webapp/templates and mode all .html files in it.
+4. Keep app.py inside Webapp/
+
+This should be directory structure. If you dont want to follow it then you have to change the path inside the py file and html files accordingly.
