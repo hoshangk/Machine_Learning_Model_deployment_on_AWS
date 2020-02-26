@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 35%;
+}
+.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid #ccc;
+}
+.estimator
+{
+ display:none;   
+}
+</style>
+
+<head>
+    <title>Loan Prediction Model</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+		$(document).ready(function(){
+			$('input[type=radio][name=model]').change(function(){
+				selected_value = $("input[name='model']:checked").val();
+			  	console.log(selected_value);
+			  	if(selected_value == 'random_forest')
+			  		$(".estimator").show()			
+			});					
+		})
+	</script>
+</head>
+<form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+        <legend>Input values:</legend>
+        Variance:
+        <input name="variance" type="number" step="any" required>
+        <br>
+        <br> Skewness:
+        <input name="skewness" type="number" step="any" required>
+        <br>
+        <br> Curtosis:
+        <input name="curtosis" type="number" step="any" required>
+        <br>
+        <br> Entropy:
+        <input name="entropy" type="number" step="any" required>
+        <br>
+        <br>
+        <input type="radio" id="svm" name="model" value="svm" required>
+		<label for="svm">SVM Classifier</label>
+		<br>	
+		<input type="radio" id="dt" name="model" value="decesion_tree" required>
+		<label for="decision_tree">Decision Tree</label>
+		<br>
+		<input type="radio" id="rf" name="model" value="random_forest" required>
+		<label for="random_forest">Random Forest</label>
+		<div class="estimator">
+			<label for="estimator">No of Estimators</label>
+			<input type="text" name="estimator" value=20><small>Default value is 20</small>
+		</div>					
+        <br>
+        <br>
+        <input type="submit">
+    </fieldset>
+</form>
+<br>
+<div class="result" align="center">
+	{{ test }}
+    {% if result %}
+        {% for variable, value in original_input.items() %}
+            <b>{{ variable }}</b> : {{ value }}
+        {% endfor %}
+        <br>
+        <br> Probability of Loan Alllotment:
+           <p style="font-size:50px">{{ Prediction }}</p>
+    {% endif %}
+</div>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 35%;
+}
+.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid #ccc;
+}
+</style>
+<head>
+    <title>Loan Prediction Model</title>
+</head>
+<form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+        <legend>Input values:</legend>
+        Variance:
+        <input name="variance" type="number" step="any" required>
+        <br>
+        <br> Skewness:
+        <input name="skewness" type="number" step="any" required>
+        <br>
+        <br> Curtosis:
+        <input name="curtosis" type="number" step="any" required>
+        <br>
+        <br> Entropy:
+        <input name="entropy" type="number" step="any" required>
+        <br>
+        <br>
+        <input type="submit">
+    </fieldset>
+</form>
+<br>
+<div class="result" align="center">
+	{{ test }}
+    {% if result %}
+        {% for variable, value in original_input.items() %}
+            <b>{{ variable }}</b> : {{ value }}
+        {% endfor %}
+        <br>
+        <br> Probability of Loan Alllotment:
+           <p style="font-size:50px">{{ Prediction }}</p>
+    {% endif %}
+</div>
+</html>

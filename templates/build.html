@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Build Model</title>
+<style>
+form {
+    margin: auto;
+    width: 35%;
+}
+.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid #ccc;
+}
+.estimator
+{
+ display:none;   
+}
+</style>
+</head>
+<body>
+	<form action="{{ url_for('build') }}" method="POST" enctype="multipart/form-data">
+    <fieldset>
+        <legend>Build Model</legend>
+        <h3 style="color: red;">{{ msg }}</h3>
+        <br>
+        <input type="File" name="input_file" accept=".csv">
+        <br><br><br>
+        <input type="submit" name="submit" value="Build Model">
+        <input type="button" name="submit" value="Test Model" onclick="location.href='http://127.0.0.1:5000/test_model'" style="float: right;">
+        <br>
+    </fieldset>
+    </form>
+
+</body>
+</html>
